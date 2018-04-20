@@ -1,0 +1,182 @@
+<!-- Se determina y escribe la localizacion -->
+<div id='ubicacion'></div>
+<script type="text/javascript">
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(mostrarUbicacion);
+	} else {alert("¡Error! Este navegador no soporta la Geolocalización.");}
+function mostrarUbicacion(position) {
+    var times = position.timestamp;
+	var latitud = position.coords.latitude;
+	var longitud = position.coords.longitude;
+    var altitud = position.coords.altitude;	
+	var exactitud = position.coords.accuracy;
+	<!-- Se calcula la distancia al Modulo 20554-->
+	var lat_INE = 32.533118;
+	var lon_INE = -117.018594;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_A = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));		
+	<!-- Se calcula la distancia al Modulo 20651-->
+	var lat_INE = 32.53495;
+	var lon_INE = -117.04449;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_B = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));	
+    <!-- Se calcula la distancia al Modulo 20551-->	
+	var lat_INE = 32.52385;
+	var lon_INE = -117.02236;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_C = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	
+    <!-- Modulo 20451 lat: 32.512381 lon: -116.886403-->
+	var lat_INE = 32.512381;
+	var lon_INE = -116.886403;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_D = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	<!-- Modulo 20552 lat: 32.494885 lon: -116.884588-->
+	var lat_INE = 32.494885;
+	var lon_INE = -116.884588;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_E = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	<!-- Modulo 20553 lat: 32.528781 lon: -116.947103-->
+	var lat_INE = 32.528781;
+	var lon_INE = -116.947103;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_F = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	<!-- Modulo 20652 lat: 32.480596 lon: -116.032190-->
+	var lat_INE = 32.480596;
+	var lon_INE = -116.032190;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_G = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	<!-- Modulo 20851 lat: 32.486031 lon: -116.946870-->
+	var lat_INE = 32.486031;
+	var lon_INE = -116.946870;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_H = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	<!-- Modulo 20852 lat: 32.428842 lon: -116.956498-->
+	var lat_INE = 32.428842;
+	var lon_INE = -116.956498;
+	var calculo_1 = latitud - lat_INE;
+    var calculo_2 = longitud - lon_INE;
+	var distancia_I = Math.sqrt((calculo_1*calculo_1)+(calculo_2*calculo_2));
+	
+	var distancia_Cercana = distancia_A;
+	var modulo_cercano = "20554";
+	if (distancia_Cercana < distancia_B)
+	{
+	    distancia_Cercana = distancia_B;
+		modulo_cercano = "20651";
+	}
+	if (distancia_Cercana < distancia_C)
+	{
+	    distancia_Cercana = distancia_C;
+		modulo_cercano = "20551";
+	}
+	if (distancia_Cercana < distancia_D)
+	{
+	    distancia_Cercana = distancia_D;
+		modulo_cercano = "20451";
+	}
+	if (distancia_Cercana < distancia_E)
+	{
+	    distancia_Cercana = distancia_E;
+		modulo_cercano = "20552";
+	}
+	if (distancia_Cercana < distancia_F)
+	{
+	    distancia_Cercana = distancia_F;
+		modulo_cercano = "20553";
+	}
+	if (distancia_Cercana < distancia_G)
+	{
+	    distancia_Cercana = distancia_G;
+		modulo_cercano = "20652";
+	}
+	if (distancia_Cercana < distancia_H)
+	{
+	    distancia_Cercana = distancia_H;
+		modulo_cercano = "20851";
+	}
+	if (distancia_Cercana < distancia_I)
+	{
+	    distancia_Cercana = distancia_I;
+		modulo_cercano = "20852";
+	}
+	
+	var div = document.getElementById("ubicacion");
+	div.innerHTML = "Timestamp: " + times + "<br>Latitud: " + latitud + "<br>Longitud: " + longitud + "<br>Altura en metros: " + altitud + "<br>Exactitud: " + exactitud 
+	+ "<br>Modulo mas cercano: " + modulo_cercano + "Distancia al mismo" + distancia_Cercana;}	
+function refrescarUbicacion() {	
+	navigator.geolocation.watchPosition(mostrarUbicacion);}	
+</script>
+
+<!-- Se escribe un mapa con la localizacion anterior-->
+<div id="demo"></div>
+<div id="mapholder"></div>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<button onclick="cargarmap()">Cargar mapa</button>
+<script type="text/javascript">
+var x=document.getElementById("demo");
+var labels = 'U';
+var labelIndex = 0;
+function cargarmap(){
+navigator.geolocation.getCurrentPosition(showPosition,showError);
+function showPosition(position)
+  {
+  lat=position.coords.latitude;
+  lon=position.coords.longitude;
+  latlon=new google.maps.LatLng(lat, lon)
+  mapholder=document.getElementById('mapholder')
+  mapholder.style.height='450px';
+  mapholder.style.width='750px';
+  var myOptions={
+  center:latlon,zoom:10,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  mapTypeControl:false,
+  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
+  <!-- Se insertan el mapa y los marcadores-->
+  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+  var marcador=new google.maps.Marker({position:latlon,map:map,title:"Tu estas aqui!",
+  label: labels[labelIndex++ % labels.length],map: map});
+  lat_INE = 32.533118;
+  lon_INE = -117.018594;
+  latlon=new google.maps.LatLng(lat_INE, lon_INE)
+  var marca_INE1=new google.maps.Marker({position:latlon,map:map,title:"INE"});
+  lat_INE = 32.53495;
+  lon_INE = -117.04449;
+  latlon=new google.maps.LatLng(lat_INE, lon_INE)
+  var marca_INE2=new google.maps.Marker({position:latlon,map:map,title:"INE"});
+  lat_INE = lat_INE = 32.52385;
+  lon_INE = -117.02236;
+  latlon=new google.maps.LatLng(lat_INE, lon_INE)
+  var marca_INE3=new google.maps.Marker({position:latlon,map:map,title:"INE"});
+  }
+function showError(error)
+  {
+  switch(error.code) 
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="Denegada la peticion de Geolocalización en el navegador."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="La información de la localización no esta disponible."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="El tiempo de petición ha expirado."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="Ha ocurrido un error desconocido."
+      break;
+    }
+  }}
+</script>
+
+<input type="boton" value="refrescar" onclick="javascript:window.location.reload();"/>
+<!--AIzaSyBiFDIz5PxhgS8T7SGqZ_Rj480L0TOnbJQ>
