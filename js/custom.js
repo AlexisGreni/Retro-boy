@@ -22,7 +22,8 @@ $(document).ready(function() {
     $('#home').backstretch([
        "images/home-bg-slider-img1.jpg", 
        "images/home-bg-slider-img2.jpg",
-        ],  {duration: 2000, fade: 750});
+       "images/home-bg-slider-img3.jpg",
+        ],  {duration: 2500, fade: 750});
     });
   })
 
