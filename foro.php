@@ -1,4 +1,5 @@
 <?php
+        //Lo mismo que con las otras páginas. Dejalo así (Tu comienza aprox en la línea 137 {sección de a reseña})    
         session_start();
         require 'basedatos.php';
         if (isset($_SESSION['user_id'])) {
@@ -24,7 +25,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+        <!--Solo es el estilo ignoralo-->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,7 +70,7 @@
 </div>
 
 
-<!-- Home section
+<!-- Home section (no te compliques y pasa de esta y la siguiente sección. No las vas a modificar)
 ================================================== -->
 <section id="home" class="parallax-section">
 	<div class="container">
@@ -121,7 +122,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-sm-7">
-
+                                
 				<div class="blog-image wow fadeInUp" data-wow-delay="0.9s">
 					<img src="images/marioyluigi.jpg" class="img-responsive" alt="blog">
 				</div>
@@ -134,6 +135,7 @@
            $query_a = "SELECT * FROM usuarios WHERE id = (SELECT ID_autor FROM Foro_RB WHERE ID = '$id')";
 	   $result_a = $mysqli->query($query_a);
 	   while($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)){
+		 //Como antes, incluye una línea para el enlace aquí
 		 $id = $row['ID'];
 		 $titulo = $row['titulo'];
 		 $mensaje = $row['mensaje'];
@@ -148,7 +150,9 @@
 					<span class="meta-author"><a href="#blog-author"> Autor: <?= $usuario; ?> </a></span>
 					<span class="meta-comments"><a href="#blog-comments"><?= $respuestas; ?> comentarios</a></span>
 					<h3><?= $titulo; ?></h3>
-					<p><?= $mensaje; ?></p>
+				        <p><?= $mensaje; ?></p>
+	    <!--AQUÍ. AQUÍ es donde debes poner el enlace. Solo usa un "href"-->
+	    <!--Y me avisas si agregas algo mas-->
 				</div>
 
 				<div class="blog-author wow fadeInUp" data-wow-delay="1s">
