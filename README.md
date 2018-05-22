@@ -12,4 +12,5 @@ Ahora bien, esto es lo que quiero que hagas: Añadele un campo de texto a la tab
 Una aclaración. EL archivo php_login_database es el que te permitira crear todas las tablas y regitros que yo tengo. Ejecutalo en 
 PhpMyAdmin.
 
+Si prefieres agregar la conexión con el correo, adelante, aunque tendrías que modificar cosas bastante diferentes para ello, así que dime si piensas hacer eso para que te explique lo que tengo hecho sobre los usuarios.
 Recuerda que además tienes que hacer la presentación de Power Point (para lo cual si quieres ayuda, por favor comparteme tu correo)
