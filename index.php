@@ -196,6 +196,12 @@
                           </form>
                         <?php endif; ?>
 			</div>
+                        <div class="col-md-4 col-sm-10 wow fadeInUp" data-wow-delay="1.3s">
+				    <div class="blog-about">
+					    <BR> <BR> <BR> <BR> <BR>
+					    <img src="images/hyrule.jpg" class="img-responsive" alt="blog">
+				    </div>
+			</div>
 		</div>
 	</div>
 </section>
